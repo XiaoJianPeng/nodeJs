@@ -8,7 +8,7 @@ const urlLib = require('url');
 
 var server = http.createServer(
     (req, res) =>{
-        // get
+        // GET
         var obj = urlLib.parse(req.url, true);
         var url = obj.pathname;
         const _get = obj.query;
@@ -22,6 +22,7 @@ var server = http.createServer(
         );
         req.on('end',() =>{
             const _post = querystring.parse(str);
+            console.log(url,_get,_post);
             /*
             url ----要什么
             _get  ---get数据
@@ -38,18 +39,8 @@ var server = http.createServer(
                 }
                 res.end();
             });
-            // 写入文件
-            fs.writeFile('postLog.txt', str, function(err,data){
-                if(err) {
-                    res.write('post数据写入失败！');
-                }else {
-                    res.write('文件写入成功！')
-                }
-                res.end();
-            });
-
         })
     }
-)
+);
 
 server.listen(8080);
