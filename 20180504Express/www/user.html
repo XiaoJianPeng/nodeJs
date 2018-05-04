@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="ajax.js" charset="utf-8"></script>
+    <script type="text/javascript">
+    window.onload=function (){
+      var oUser=document.getElementById('user');
+      var oPass=document.getElementById('pass');
+      var oBtn=document.getElementById('btn1');
+      var rBtn = document.getElementById('btn2');
+
+      oBtn.onclick=function (){
+        ajax({
+          url: '/login',
+          data: {user: oUser.value, pass: oPass.value},
+          success: function (str){
+            var json=eval('('+str+')');
+            if(json.ok){
+              alert('登录成功');
+            }else{
+              alert('失败：'+json.msg);
+            }
+          },
+          error: function (){
+            alert('通信失败');
+          }
+        });
+      };
+      rBtn.onclick = function() {
+          ajax({
+              url:'/reg',
+              data:{user:oUser.value, pass: oPass.value},
+              success: function(str) {
+                var json = eval('('+str+')');
+                if(json.ok) {
+                    alert('注册成功:' + JSON.stringify(json.msg));
+                } else {
+                    alert('失败：' + json.msg)
+                }
+              }
+          })
+      }
+    };
+    </script>
+  </head>
+  <body>
+    用户：<input type="text" id="user" /><br>
+    密码：<input type="password" id="pass" /><br>
+    <input type="button" value="登录" id="btn1" />
+    <input type="button" value="注册" id="btn2" />
+  </body>
+</html>
