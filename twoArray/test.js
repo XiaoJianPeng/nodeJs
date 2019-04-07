@@ -35,7 +35,7 @@ const twoToOne = (arr) => {
 // 使用reduce实现二维数组转一维数组
 // let oneArr = arrSchedule.reduce((result, item) => result.concat(item))
 
-// 使用ES最新语法 flat() 方法会递归到指定深度将所有子数组连接，并返回一个新数组。
+// 使用ES最新语法 flat() 方法会递归到指定深度将所有子数组连接，并返回一个新数组。缺点是，有兼容性问题。优点是非常简单。
 // 语法：var newArray = arr.flat(depth)，参数说明：depth，可选，指定嵌套数组中的结构深度，默认值为1。
 let oneArr = arrSchedule.flat();
 
